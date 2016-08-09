@@ -20,6 +20,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'pg'
 group :development do
   gem 'better_errors'

@@ -12,6 +12,10 @@ module SettingsHelper
 		return ""
 	end
 	
+	def getTokenBoolean(key)
+		getToken(key) == "true"
+	end
+	
 	def getToken(key)
 		@config = getConfig
 		if @config && @config == 'env'

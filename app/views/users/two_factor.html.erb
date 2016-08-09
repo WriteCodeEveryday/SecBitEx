@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <h1 class="page-header">
+        Are you <b>you?</b>
+      </h1>
+
+      <h3>We need to be sure you're you.</h3>
+      <h3>We sent a code to your phone: <b><%= @phone %></b></h3>
+    </div>
+    <div class="col-md-6">
+      <div class="authform">
+      	<%= form_tag(users_two_factor_check_path, method: "post") do |f| %>
+          <h3>Two Factor Code</h3>
+          <%= label_tag :code %>
+          <%= text_field_tag :code, nil, :autofocus => true, class: 'form-control' %>
+          <h5 style="margin-top: 20px; float:right">Your code was sent <%= distance_of_time_in_words_to_now(@updated_at) %> ago</h5>
+          <%= submit_tag "Here's My Code", :class => 'btn-primary form-control' %>
+      	<% end %>
+
+        <%= form_tag(users_two_factor_generate_path, method: "post") do |f| %>
+          <h3>Generate New Code</h3>
+          <h5 style="margin-top: 10px; float:right">More than 10 minutes required. Sent <%= distance_of_time_in_words_to_now(@updated_at) %> ago</h5>
+          <%= submit_tag "Give Me A New Code", :class => 'btn-primary form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
