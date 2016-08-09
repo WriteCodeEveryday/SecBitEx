@@ -82,6 +82,16 @@
       "description": "Sellers can impose minimum limits on buyers (true or false)",
       "value": "false",
       "required": true
+    },
+    "BITCOIN_NETWORK": {
+      "description": "Bitcoin network to use (livenet or testnet)",
+      "value": "testnet",
+      "required": true
+    },
+    "STRIPE_NETWORK": {
+      "description": "Stripe network to use (production or test)",
+      "value": "test",
+      "required": true
     }
   }
 }

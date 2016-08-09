@@ -25,6 +25,8 @@ The following are the list of configuration options (missing keys will return as
 * ALLOW_SELLER_KYC_COLLECT - "true"/"false" to allow sellers to collect KYC during sales (mostly ID/selfie pictures)
 * ALLOW_SELLER_DELAYS - "true"/"false" to allow sellers to delay sales
 * ALLOW_SELLER_LIMITS - "true"/"false" to allow sellers to impose limits on buyers
+* BITCOIN_NETWORK - "testnet" / "livenet" for network to use
+* STRIPE_NETWORK - "test" / "production" for network to use
 
 # Deployment Options [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AtheistOfFail/SecBitEx)
 These are the proposed outside services for the stack on Heroku
