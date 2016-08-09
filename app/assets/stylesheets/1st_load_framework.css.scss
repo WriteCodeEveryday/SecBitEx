@@ -7,8 +7,12 @@ img {
   @extend .img-responsive;
   margin: 0 auto;
   }
+.navbar{
+  background-color: #5cb85c
+}
 // override for the 'Home' navigation link
 .navbar-brand {
+  color: #ffffff !important;
   font-size: inherit;
   }
 
