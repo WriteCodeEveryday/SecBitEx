@@ -22,6 +22,11 @@
       "value": "changeme",
       "required": true
     },
+    "DOMAIN_NAME":{
+      "description": "For sending email, needed otherwise Devise will throw a hissy fit",
+      "value": "mg.herokuapp.com",
+      "required": false
+    },
     "RAILS_ENV": "production",
     "CONFIG_PROVIDER": {
       "description": "Where configs should be loaded from (db or env)",
