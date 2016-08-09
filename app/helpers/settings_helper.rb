@@ -9,7 +9,7 @@ module SettingsHelper
 			return @db
 		end
 
-		return nil
+		return ""
 	end
 	
 	def getToken(key)
@@ -21,15 +21,17 @@ module SettingsHelper
 				return @env
 			end
 			
-			return nil
+			return ""
 		elsif @config && @config == 'db'
 			@db = Setting.where({:key => key}).first
 
 			if @db
 				return @db.value
 			end
+
+			return ""
 		else
-			return nil
+			return ""
 		end
 	end
 end

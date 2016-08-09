@@ -1,6 +1,4 @@
 class VisitorsController < ApplicationController
-	include SettingsHelper
-
 	def configurable
 		@allow_seller_delays = getToken('ALLOW_SELLER_DELAYS') == 'true' rescue false
 		@allow_seller_kyc_collect = getToken('ALLOW_SELLER_KYC_COLLECT') == 'true' rescue false
