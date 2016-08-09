@@ -82,6 +82,31 @@
       "description": "Sellers can impose minimum limits on buyers (true or false)",
       "value": "false",
       "required": true
+    },
+    "BITCOIN_NETWORK": {
+      "description": "Bitcoin network to use (livenet or testnet)",
+      "value": "testnet",
+      "required": true
+    },
+    "STRIPE_NETWORK": {
+      "description": "Stripe network to use (production or test)",
+      "value": "test",
+      "required": true
+    },
+    "WITHDRAWL": {
+      "description": "Process withdrawls automatically (true or false)",
+      "value": "false",
+      "required": true
+    },
+    "WITHDRAWL_PUBLIC": {
+      "description": "Where to accept deposits - public address - acts as withdrawl address as well",
+      "value": "1ABCPleaseChangeMe",
+      "required": true
+    },
+    "WITHDRAWL_WIF": {
+      "description": "Wallet Import Format of public key above",
+      "value": "changeme",
+      "required": false
     }
   }
 }
