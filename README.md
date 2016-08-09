@@ -12,13 +12,11 @@ ACH Transfers will be provided by Stripe
 
 Initial Setup provided by RailsComposer.
 
-# Deployment Options - Heroku
+# Deployment Options - Heroku [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AtheistOfFail/SecBitEx)
 
 * Uses sidekiq for Trade Engine Scheduling / Task Scheduling
 * Uses Postgres for Storage
 * Uses Redis To Go for Caching / Scheduling of tasks
-
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
 
