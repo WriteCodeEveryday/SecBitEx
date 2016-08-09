@@ -27,8 +27,22 @@
                 <li>Allow Sellers to Limit To People Who Have Transacted X Amount</li>
                 <li>Customizable Seller Fees</li>
             </ul>
+        
+            <p>Current Setup - This Instance</p>
+            <ul> 
+              <li>Configuration Provider: <b><%= @config_provider rescue "None Provided" %></b></li>
+              <li>Withdrawal Configuration: <b><%= @withdrawl ? "Automatic" : "Manual" %></b></li>
+              <li>Bitcoin Network: <b><%= @bitcoin_network ? "Livenet" : "Testnet" %></b></li>
+              <li>Stripe Network: <b><%= @stripe_network ? "Production" : "Test" %></b></li>
+              <li>Twilio 2FA: <b><%= @twilio_twofa ? "Active" : "Inactive" %></b></li>
+              <li>Mailgun Email: <b><%= @mailgun_email ? "Active" : "Inactive" %></b></li>
+              <li>Sellers Can Collect KYC: <b><%= @allow_seller_kyc_collect ? "Yes" : "No" %></b></li>
+              <li>Sellers Can Delay Orders: <b><%= @allow_seller_delays ? "Yes" : "No" %></b></li>
+              <li>Sellers Can Set Min-Buy Limits: <b><%= @allow_seller_limits ? "Yes" : "No" %></b></li>
+            </ul>
+
             <p> Your exchange should be an unique as your ideas on how to run an exchange.</p>
-            <p><b>Because One Size Fits None. #StrongIndepentExchangeThatNeedsNoInvestor</b></p>
+            <p><b>Because One Size Fits None. #StrongIndepentExchangeThatDon'tNeedNoInvestor</b></p>
         </div>
         <div class="col-md-6">
             <img class="img-responsive" src="http://placehold.it/700x450&text=Configuration 101" alt="">
