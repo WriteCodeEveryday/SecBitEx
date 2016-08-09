@@ -1,12 +1,26 @@
-<div class="authform">
-  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
-    <h3>Forgot your password?</h3>
-    <p>We'll send password reset instructions.</p>
-    <%= devise_error_messages! %>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <h1 class="page-header">
+        Forget Something?
+      </h1>
+
+      <h3>It's Okay, I Forget My Password All The Time.</h3>
+      <h3>Seriously.</h3>
     </div>
-     <%= f.submit 'Reset Password', :class => 'button right' %>
-  <% end %>
+    <div class="col-md-6">
+      <div class="authform">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form'}) do |f| %>
+        <h3>Forgot your password?</h3>
+        <p>We'll send password reset instructions.</p>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+        </div>
+        <%= f.submit 'Reset Password', :class => 'btn-primary form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
