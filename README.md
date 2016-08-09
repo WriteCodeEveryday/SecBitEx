@@ -2,7 +2,6 @@
 Secure Bitcoin Exchange (open source, non-custodial bitcoin exchange prototype, MIT license)
 
 # Initial Ideas
-================
 All users will submit a public key. This will act as their 'Wallet'
 
 Cashouts can be performed "automatically" or through a "manual WIF import"
@@ -10,7 +9,6 @@ Cashouts can be performed "automatically" or through a "manual WIF import"
 This proof of concept is going to be "functional", not "pretty"
 
 # Configuration Management
-================
 This proof of concept should be highly configurable
 
 Configurations can be stored in environment tokens or ActiveRecord model "Settings"
@@ -29,7 +27,6 @@ The following are the list of configuration options (missing keys will return as
 * ALLOW_SELLER_LIMITS - "true"/"false" to allow sellers to impose limits on buyers
 
 # Deployment Options [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AtheistOfFail/SecBitEx)
-================
 These are the proposed outside services for the stack on Heroku
 * Uses devise for login/account creation tasks
 * Uses sidekiq for Trade Engine Scheduling / Task Scheduling
@@ -41,25 +38,21 @@ These are the proposed outside services for the stack on Heroku
 
 
 # Bitcoin Sellers
-================
 * Sellers will sell their coins by creating a sell order and transferring to the exchange wallet.
 * If there's a buy order in their range, they will be shown that there is a buy order in range.
 
 # Bitcoin Sellers Config Options
-================
 Sellers can also select the following additional configuration options (depending on configuration)
 * Only Sell To Buyers Exceeding (USD / BTC Limit Purchased)
 * Delayed Fund Release (Instant, 1 Day, 3 Day, 7 Day)
 * Require ID / Selfie (Will use Webcam.js for taking a picture)
 
 # Bitcoin Buyers
-================
 * Buyers will buy their coins by creating a buy order (with no credentials required). 
 * They will receive an email when a sell order is valid for their buy order. 
 * At this point, they will supply ACH credentials for the buy order.
 
 # Bitcoin Buyers Config Options
-================
 Buyers can also select from the following additional config options (depending on configuration)
 * ID / Selfie (true/false)
 * Instant or Delayed
