@@ -8,6 +8,7 @@
     "Bitcoin Exchange",
     "Security",
     "SecBitEx",
+    "Secure Bitcoin Exchange"
   ],
   "scripts": {"postdeploy": "bundle exec rake db:migrate; bundle exec rake db:seed"},
   "env": {
