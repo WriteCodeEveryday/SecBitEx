@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "SecBitEx" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "SecBitEx" %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- Custom Fonts -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body class="nav-md" style="padding: 0px !important; margin: 0px !important">
+  <div class="container body">
+    <%= render "layouts/gentelella_sidenav" %>
+    <%= render "layouts/gentelella_topnav" %>
+    <%= render 'layouts/messages' %>
+
+    <%= yield %>
+
+    <%= render "layouts/gentelella_footer" %>
+  </body>
+</html>

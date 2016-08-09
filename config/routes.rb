@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get '/features/peertopeer' => 'visitors#peertopeer'
   get '/features/opensource' => 'visitors#opensource'
   get '/stats' => 'visitors#stats'
-  get '/dashboard' => 'users#dashboard'
+
+  get '/dashboard' => 'page#dashboard'
+  get '/dashboard/buy' => 'page#buy'
+  get '/dashboard/sell' => 'page#sell'
+  get '/dashboard/settings' => 'page#settings'
 
   get '/users/two_factor' => 'users#two_factor'
   post '/users/two_factor_check' => 'users#two_factor_check'
