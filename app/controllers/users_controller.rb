@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @code_set == @code_provided
       current_user.two_fac_code = nil
       current_user.save
-      redirect_to '/dashboard/', :message => "Welcome Back #{current_user.name.titleize}"
+      redirect_to '/dashboard/'
     else
       redirect_to :back, :alert => "Wrong Code."
     end

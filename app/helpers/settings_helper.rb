@@ -1,4 +1,6 @@
 module SettingsHelper
+	@CONFIG_PROVIDER = nil
+
 	def getConfig
 		@env = ENV['CONFIG_PROVIDER']
 		@db = Setting.where({:key => 'CONFIG_PROVIDER'}).first
@@ -17,8 +19,9 @@ module SettingsHelper
 	end
 	
 	def getToken(key)
-		@config = getConfig
-		if @config && @config == 'env'
+		@CONFIG_PROVIDER = getConfig if !@CONFIG_PROVIDER
+		
+		if @CONFIG_PROVIDER && @CONFIG_PROVIDER == 'env'
 			@env = ENV[key]
 
 			if @env
@@ -26,7 +29,7 @@ module SettingsHelper
 			end
 			
 			return ""
-		elsif @config && @config == 'db'
+		elsif @CONFIG_PROVIDER && @CONFIG_PROVIDER == 'db'
 			@db = Setting.where({:key => key}).first
 
 			if @db

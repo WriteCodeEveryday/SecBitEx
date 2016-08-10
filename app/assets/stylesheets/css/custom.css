@@ -2061,6 +2061,7 @@ input.parsley-error, textarea.parsley-error, select.parsley-error {
 
 /* alerts (when validation fails) */
 
+/*
 .item .alert {
   float: left;
   margin: 0 0 0 20px;
@@ -2091,7 +2092,7 @@ input.parsley-error, textarea.parsley-error, select.parsley-error {
 .item.bad .alert {
   left: 0;
   opacity: 1;
-}
+}*/
 
 /* ***** dropzone ****** */
 
@@ -3296,6 +3297,7 @@ html > body > .ui-pnotify {
 
 /* theming */
 
+/*
 .alert-success {
   color: #ffffff;
   background-color: rgba(38, 185, 154, 0.88);
@@ -3321,6 +3323,7 @@ html > body > .ui-pnotify {
   background-color: rgba(52, 73, 94, 0.88);
   border-color: rgba(52, 73, 94, 0.88);
 }
+*/
 /* /theming */
 
 

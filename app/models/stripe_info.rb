@@ -1,0 +1,2 @@
+class StripeInfo < ApplicationRecord
+end
