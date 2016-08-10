@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/lian/bitcoin-ruby
+  revision: 2757271833d7931bbc0a0a796dab5360a7e74339
+  branch: master
+  specs:
+    bitcoin-ruby (0.0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +54,8 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bitcoin (0.2.0)
+      bitcoin-ruby
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -79,6 +88,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (2.1.1)
+    dotenv-rails (2.1.1)
+      dotenv (= 2.1.1)
+      railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -232,12 +245,15 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  bitcoin
+  bitcoin-ruby!
   bootstrap-sass
   byebug
   capybara
   coffee-rails (~> 4.2)
   database_cleaner
   devise
+  dotenv-rails
   factory_girl_rails
   faker
   jbuilder (~> 2.5)

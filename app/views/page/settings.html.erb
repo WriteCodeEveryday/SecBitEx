@@ -1,0 +1,314 @@
+<div class="right_col" role="main" style="background-color: #FFFFFF">
+  <script>
+  $(document).ready(function(){
+    $('#wizard').smartWizard({
+        includeFinishButton : false,   // Add the finish button
+    });
+
+    $(".togglable").click(function(){
+      $("#"+$(this).data('target')).toggle()
+    });
+
+    $("#select_options").change(function(){
+      value = $(this).find(":selected").val()
+      if (value == "buyer"){
+        $('#wizard').smartWizard('disableStep', 3)
+        $('#wizard').smartWizard('goToStep', 2)
+      } else if (value == "seller" || value == "both") {
+        $('#wizard').smartWizard('enableStep', 3)
+        $('#wizard').smartWizard('goToStep', 2)
+      }
+    });
+
+    $("#wallet_wizard_form").on('ajax:success', function(event, data, status, xhr){
+      if (data.status == "200"){
+        $("#flashes").prepend('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Message" : ' + data.message + '</strong></div>')
+      } else if (data.status == "400") {
+        $("#flashes").prepend('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Error" : ' + data.error + '</strong></div>')
+      }
+    });
+
+    $("#stripe_wizard_form").on('ajax:success', function(event, data, status, xhr){
+      if (data.status == "200"){
+        $("#flashes").prepend('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Message" : ' + data.message + '</strong></div>')
+        location.reload()
+      } else if (data.status == "400") {
+        $("#flashes").prepend('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Error" : ' + data.error + '</strong></div>')
+      }
+    });
+
+    $("#wallet_alone_form").on('ajax:success', function(event, data, status, xhr){
+      if (data.status == "200"){
+        $("#flashes").prepend('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Message" : ' + data.message + '</strong></div>')
+        location.reload()
+      } else if (data.status == "400") {
+        $("#flashes").prepend('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Error" : ' + data.error + '</strong></div>')
+      }
+    });
+
+    $("#stripe_alone_form").on('ajax:success', function(event, data, status, xhr){
+      if (data.status == "200"){
+        $("#flashes").prepend('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Message" : ' + data.message + '</strong></div>')
+        location.reload()
+      } else if (data.status == "400") {
+        $("#flashes").prepend('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><strong>"Error" : ' + data.error + '</strong></div>')
+      }
+    });
+  })
+  </script>
+  <div class="">
+    <div class="page-title">
+      <div class="title_left">
+        <h3>Exchange Settings</h3>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <h4 class="x_title">Quick Settings</h4>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <h5>Addresses</h5>
+              <ul>
+                <% current_user.addresses.each do |address| %>
+                <li>Wallet: <%= address.public_key %></li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="col-md-4 col-xs-12">
+              <h5>Stripe Info</h5>
+              <ul>
+                <li>Public Key: <%= @stripe_public_exists ? "Ready" : "Not Ready" %></li>
+                <li>Secret Key: <%= @stripe_private_exists ? "Ready" : "Not Ready" %></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4 col-xs-12">
+              <h5>Status</h5>
+              <ul>
+                <li>Buy Status: <%= @buy_status ? "Ready" : "Not Ready"  %></li>
+                <li>Sell Status: <%= @sell_status ? "Ready" : "Not Ready"  %></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 15px">
+            <% if !@buy_status && !@sell_status %>
+              <div class="col-md-4 col-xs-12" style="pad"><btn class="btn btn-success form-control togglable" data-target="quick_setup_holder">Run Quick Setup</btn></div>
+            <% end %>
+            
+            <div class="col-md-4 col-xs-12"><btn class="btn btn-primary form-control togglable" data-target="add_wallet_holder">Add Wallet</btn></div>
+
+            <% if !@sell_status %>
+              <div class="col-md-4 col-xs-12"><btn class="btn btn-primary form-control togglable" data-target="add_stripe_holder">Add Stripe Info</btn></div>
+            <% end %>
+          </div>
+
+          <div class="col-md-12" id="flashes" style="width: 100%; padding: 0; margin: 0">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  <% if !@buy_status && !@sell_status %>
+    <div class="clearfix"></div>
+    <div class="row" id="quick_setup_holder" style="display:none">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Quick Setup</small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <!-- Smart Wizard -->
+            <p>A form to get your account setup as quickly as possible.</p>
+            <div id="wizard" class="form_wizard wizard_horizontal">
+              <ul class="wizard_steps">
+                <li>
+                  <a href="#step-1">
+                    <span class="step_no">1</span>
+                    <span class="step_descr">
+                      Step 1<br />
+                      <small>Buyer or Seller?</small>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#step-2">
+                    <span class="step_no">2</span>
+                    <span class="step_descr">
+                      Step 2<br />
+                      <small>Wallet Info</small>
+                    </span>
+                  </a>
+                </li>
+                <li id="buyer_step">
+                  <a href="#step-3">
+                    <span class="step_no">3</span>
+                    <span class="step_descr">
+                      Step 3<br />
+                      <small>Stripe Info</small>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+              <div id="step-1">
+                <form class="form-horizontal form-label-left">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="select_options">What is your purpose in this exchange? <span class="required">*</span>
+                    </label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <select type="text" id="select_options" class="form-control col-md-7 col-xs-12">
+                        <option value=""></option>
+                        <option value="seller">Seller</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="both">Both</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+              <div id="step-2">
+                <%= form_tag(dashboard_settings_add_wallet_path, id: 'wallet_wizard_form', method: "post", class: "form-horizontal form-label-left", remote: true) do %>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bitcoin_network">Bitcoin Network</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <input type="text" id="bitcoin_network" required="required" class="form-control col-md-7 col-xs-12" value="<%= getTokenBoolean('BITCOIN_NETWORK') ? "Livenet" : "Testnet" %>" readonly>
+                    </div>
+                  </div>
+
+                   <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="public_address">Wallet Public Address<span class="required">*</span>
+                    </label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <%= text_field_tag 'public_address', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                      <%= submit_tag("Add Wallet", class: "btn btn-success form-control", style:"margin-top: 5px") %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div id="step-3">
+                <%= form_tag(dashboard_settings_add_stripe_info_path, id: 'stripe_wizard_form', method: "post", class: "form-horizontal form-label-left", remote: true) do %>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bitcoin_network">Stripe Mode</label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <input type="text" id="bitcoin_network" required="required" class="form-control col-md-7 col-xs-12" value="<%= getTokenBoolean('STRIPE_NETWORK') ? "Production" : "Test" %>" readonly>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stripe_private">Stripe Secret Key<span class="required">*</span>
+                    </label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <%= text_field_tag 'stripe_private', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stripe_public">Stripe Publishable Key<span class="required">*</span>
+                    </label>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                      <%= text_field_tag 'stripe_public', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                      <h5 style="margin-top:50px !important">* Only Required For Selling Bitcoin</h5>
+                      <%= submit_tag("Add Stripe Info", class: "btn btn-success form-control", style:"margin-top: 5px") %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- End SmartWizard Content -->
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="clearfix"></div>
+  <div class="row" id="add_wallet_holder" style="display:none">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Add Wallet</small></h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <!-- Smart Wizard -->
+          <p>A form for adding a wallet.</p>
+          <div>
+            <%= form_tag(dashboard_settings_add_wallet_path, id: 'wallet_alone_form', method: "post", class: "form-horizontal form-label-left", remote: true) do %>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bitcoin_network">Bitcoin Network</label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <input type="text" id="bitcoin_network" required="required" class="form-control col-md-7 col-xs-12" value="<%= getTokenBoolean('BITCOIN_NETWORK') ? "Livenet" : "Testnet" %>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="public_address">Wallet Public Address<span class="required">*</span>
+                </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <%= text_field_tag 'public_address', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                  <%= submit_tag("Add Wallet", class: "btn btn-success form-control", style:"margin-top: 5px") %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+        <!-- End SmartWizard Content -->
+      </div>
+    </div>
+  </div>
+
+  <% if !@sell_status %>
+  <div class="clearfix"></div>
+  <div class="row" id="add_stripe_holder" style="display:none">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Add Stripe Info</small></h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+          <!-- Smart Wizard -->
+          <p>A form for adding stripe info.</p>
+          <div>
+            <%= form_tag(dashboard_settings_add_stripe_info_path, id: 'stripe_alone_form', method: "post", class: "form-horizontal form-label-left", remote: true) do %>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="bitcoin_network">Stripe Mode</label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <input type="text" id="bitcoin_network" required="required" class="form-control col-md-7 col-xs-12" value="<%= getTokenBoolean('STRIPE_NETWORK') ? "Production" : "Test" %>" readonly>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stripe_private">Stripe Secret Key<span class="required">*</span>
+                </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                   <%= text_field_tag 'stripe_private', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stripe_public">Stripe Publishable Key<span class="required">*</span>
+                </label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                  <%= text_field_tag 'stripe_public', nil, class: "form-control col-md-7 col-xs-12", required: "required" %>
+                  <h5 style="margin-top:50px !important">* Only Required For Selling Bitcoin</h5>
+                  <%= submit_tag("Add Stripe Info", class: "btn btn-success form-control", style:"margin-top: 5px") %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+        </div>
+        <!-- End SmartWizard Content -->
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  </div>
+</div>
