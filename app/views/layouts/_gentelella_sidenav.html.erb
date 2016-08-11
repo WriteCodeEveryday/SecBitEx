@@ -33,9 +33,9 @@
           <ul class="nav side-menu">
             <li class=<%= "#{current_page?(dashboard_path) ? 'active' : 'nil'} " %>><a href='/dashboard'><i class="fa fa-dashboard"></i> Dashboard </a>
             </li>
-            <li class=<%= "#{current_page?(dashboard_buy_path) ? 'active' : 'nil'} " %>><a href='/dashboard/buy'><i class="fa fa-btc"></i> Buy Bitcoins</a>
+            <li class=<%= "#{current_page?(dashboard_buy_create_path) ? 'active' : 'nil'} " %>><a href='/dashboard/buy'><i class="fa fa-btc"></i> Buy Bitcoins</a>
             </li>
-            <li class=<%= "#{current_page?(dashboard_sell_path) ? 'active' : 'nil'} " %>><a href='/dashboard/sell'><i class="fa fa-btc"></i> Sell Bitcoins</a>
+            <li class=<%= "#{current_page?(dashboard_sell_create_path) ? 'active' : 'nil'} " %>><a href='/dashboard/sell'><i class="fa fa-btc"></i> Sell Bitcoins</a>
             </li>
             <li class=<%= "#{current_page?(dashboard_settings_path) ? 'active' : 'nil'} " %>><a href='/dashboard/settings'><i class="fa fa-cog"></i> Exchange Settings</a>
             </li>

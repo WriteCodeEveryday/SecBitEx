@@ -107,6 +107,16 @@
       "description": "Wallet Import Format of public key above",
       "value": "changeme",
       "required": false
+    },
+    "SELLER_FEE": {
+      "description": "Fee for Bitcoin Sellers (1 - 1%)",
+      "value": "1",
+      "required": false
+    },
+    "BUYER_FEE": {
+      "description": "Fee for Bitcoin Buyers (1 - 1%)",
+      "value": "1",
+      "required": false
     }
   }
 }

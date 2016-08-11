@@ -32,6 +32,8 @@
             <ul> 
               <li>Configuration Provider: <b><%= @config_provider rescue "None Provided" %></b></li>
               <li>Withdrawal Configuration: <b><%= @withdrawl ? "Automatic" : "Manual" %></b></li>
+              <li>Buyer Fee: <b><%= @buyer_fee %>%</b></li>
+              <li>Seller Fee: <b><%= @seller_fee %>%</b></li>
               <li>Bitcoin Network: <b><%= @bitcoin_network ? "Livenet" : "Testnet" %></b></li>
               <li>Stripe Network: <b><%= @stripe_network ? "Production" : "Test" %></b></li>
               <li>Twilio 2FA: <b><%= @twilio_twofa ? "Active" : "Inactive" %></b></li>

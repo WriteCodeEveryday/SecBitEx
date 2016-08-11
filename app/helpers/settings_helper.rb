@@ -14,6 +14,10 @@ module SettingsHelper
 		return ""
 	end
 	
+	def getTokenNumber(key)
+		getToken(key).to_f
+	end
+
 	def getTokenBoolean(key)
 		getToken(key) == "true"
 	end

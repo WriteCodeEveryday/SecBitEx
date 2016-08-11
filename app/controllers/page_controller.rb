@@ -11,9 +11,21 @@ class PageController < ApplicationController
 		@sell_status = @buy_status && @stripe_public_exists && @stripe_private_exists
 	end
 
-	def buy
+	def buy_create
 	end
 
-	def sell
+	def buy_kyc
+	end
+
+	def buy_finalize_select
+	end
+
+	def buy_finalize_complete
+	end
+
+	def sell_create
+	end
+
+	def sell_kyc
 	end
 end
