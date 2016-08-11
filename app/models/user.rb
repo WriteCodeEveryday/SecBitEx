@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :addresses
+  has_many :orders, :through => :addresses
   has_one :stripe_info
 end
